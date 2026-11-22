@@ -174,12 +174,46 @@ tbody tr[data-selected="true"] { background: rgba(52, 211, 153, 0.08); }
 .footer { margin-top: var(--step-6); padding-top: var(--step-4); border-top: 1px solid var(--border); color: var(--faint); font-size: 12px; display: grid; gap: var(--step-1); }
 .footer b { color: var(--muted); font-weight: 600; }
 
+/* Farm verdicts: Farm is the signal, Thin is a warning, Skip is a stop. */
+.verdict { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; white-space: nowrap; border-radius: 999px; padding: 2px 10px; border: 1px solid transparent; }
+.verdict.farm { color: var(--accent); border-color: rgba(52, 211, 153, 0.35); }
+.verdict.farm::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.verdict.thin { color: var(--amber); border-color: rgba(242, 181, 68, 0.35); }
+.verdict.thin::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+.verdict.skip { color: var(--muted); border-color: var(--border-2); }
+.verdict.skip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+
+/* Model sandbox: three sliders that recompute the board live. */
+.sandbox { margin-top: var(--step-4); padding: var(--step-5); display: grid; gap: var(--step-3); }
+.sandbox h2 { margin-bottom: var(--step-1); }
+.sliders { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--step-4); }
+.slider { display: grid; gap: var(--step-2); }
+.slider label { color: var(--muted); font-size: 12px; }
+.slider input[type="range"] { width: 100%; accent-color: var(--accent); }
+.slider b { font-family: var(--font-num); font-size: 14px; color: var(--amber); }
+
+/* Risk notes in the detail drawer. */
+.risk { margin: 0; padding-left: var(--step-5); display: grid; gap: var(--step-2); }
+.risk li { color: var(--muted); font-size: 13px; }
+.risk li::marker { color: var(--amber); }
+
+/* Ledger statuses. */
+.status.watch { color: var(--amber); border-color: rgba(242, 181, 68, 0.35); }
+.status.watch::before { background: var(--amber); }
+.status.early { color: var(--accent); border-color: rgba(52, 211, 153, 0.35); }
+.status.early::before { background: var(--accent); }
+
+/* The Watchlist only toggle next to the filters. */
+.field > button { min-height: 38px; padding: 0 var(--step-3); border: 1px solid var(--border-2); border-radius: var(--radius-control); background: var(--surface); color: var(--muted); }
+.field > button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #08130d; font-weight: 600; }
+
 @media (max-width: 900px) {
   .shell { padding: var(--step-4); }
   .lede { grid-template-columns: 1fr; gap: var(--step-4); }
   .facts { border-left: 0; border-top: 1px solid var(--border); padding-left: 0; padding-top: var(--step-4); }
   .field input { min-width: 0; width: 100%; }
   .catbar { grid-template-columns: 130px 1fr 110px; }
+  .sliders { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
